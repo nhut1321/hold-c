@@ -1,0 +1,44 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local mmb = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+
+main.Name = "main"
+main.Parent = ScreenGui
+main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+main.BackgroundTransparency = 0.550
+main.Position = UDim2.new(0.0364779867, 0, 0.376262575, 0)
+main.Size = UDim2.new(0, 42, 0, 42)
+main.Active = true
+main.Draggable = true
+
+mmb.Name = "mmb"
+mmb.Parent = main
+mmb.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+mmb.BackgroundTransparency = 0.600
+mmb.Position = UDim2.new(0.119047642, 0, 0.166666657, 0)
+mmb.Size = UDim2.new(0, 32, 0, 27)
+mmb.Font = Enum.Font.SourceSans
+mmb.Text = "hold c"
+mmb.TextColor3 = Color3.fromRGB(0, 0, 0)
+mmb.TextSize = 14.000
+mmb.MouseButton1Down:Connect(function()
+	local vim = game:service("VirtualInputManager")
+
+local function hold(keyCode, time)
+  vim:SendKeyEvent(true, keyCode, false, game)
+  task.wait(time)
+  vim:SendKeyEvent(false, keyCode, false, game)
+end
+
+
+hold(Enum.KeyCode.C, 9999)
+end)
